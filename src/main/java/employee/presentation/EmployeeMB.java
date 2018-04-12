@@ -10,7 +10,7 @@ import javax.inject.Named;
 import employee.Employee;
 import employee.data.EmployeeDAO;
 
-@Named(value = "employeeController")
+@Named(value = "employeeManagedBean")
 @RequestScoped
 public class EmployeeMB {
 	@Inject EmployeeDAO dao;
