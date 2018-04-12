@@ -3,6 +3,7 @@ package employee.data;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +13,7 @@ import javax.transaction.UserTransaction;
 import employee.Employee;
 
 @Named
+@RequestScoped
 public class EmployeeDAO {
 	@PersistenceContext(unitName = "EmployeePU")
 	private EntityManager entityManager;

@@ -9,7 +9,7 @@
          data source, this example data source is just for development and testing! -->
       <!-- The datasource is deployed as ${ds-deployment-location}, you
          can find it in the source at PostgreSQL_employee-ds.xml -->
-      <non-jta-data-source>java:/EmployeeDS</non-jta-data-source>
+      <non-jta-data-source>java:/employeeDS</non-jta-data-source>
       <properties>
          <!-- Properties for Hibernate -->
          <!-- Database dropping followed by creation -->
