@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Cadastrar nova Planta</title>
+</h:head>
+<body>
+	<h:form>
+		<p>
+			<h:outputLabel value="Nome: " />
+			<h:inputText value="#{plantaManagedBean.planta.nome}" />
+		</p>
+
+		<!-- dob -->
+		<p>
+			<h:outputLabel value="Nome Cientifico: " />
+			<h:inputText value="#{plantaManagedBean.planta.nomeCientifico}" />
+		</p>
+
+		<p>
+			<h:outputLabel value="Luminosidade padrão: " />
+			<h:inputText value="#{plantaManagedBean.planta.luminosidadePadrao}" />
+		</p>
+
+		<p>
+			<h:outputLabel value="Umidade Padrão: " />
+			<h:inputText value="#{plantaManagedBean.planta.umidadePadrao}" />
+		</p>
+
+		<!-- rotina -->
+
+		<p>
+			<h:outputLabel value="Tipo de Solo: " />
+			<h:inputText value="#{plantaManagedBean.planta.tipoDeSolo}" />
+		</p>
+
+		<p>
+			<h:outputLabel value="É adubável? " />
+			<h:selectOneRadio value="#{plantaManagedBean.planta.adubavel}">
+				<f:selectItem itemValue="True" itemLabel="Sim" />
+				<f:selectItem itemValue="False" itemLabel="Não" />
+			</h:selectOneRadio>
+		</p>
+
+		<p>
+			<h:commandButton value="Add Nova Planta"
+				action="#{plantaManagedBean.addNewPlanta}" />
+		</p>
+	</h:form>
+</body>
+</html>

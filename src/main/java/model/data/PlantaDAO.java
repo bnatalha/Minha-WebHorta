@@ -1,4 +1,4 @@
-package employee.data;
+package model.data;
 
 import java.util.List;
 
@@ -10,31 +10,36 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.UserTransaction;
 
-import employee.Employee;
+import model.Planta;
 
 @Named
 @RequestScoped
-public class EmployeeDAO {
-	@PersistenceContext(unitName = "EmployeePU")
+public class PlantaDAO {
+	@PersistenceContext(unitName = "PlantaPU")
 	private EntityManager entityManager;
 
 	@Resource
 	private UserTransaction userTransaction;
 
-	public Employee addNew(Employee employee) {
+	public Planta addNew(Planta planta) {
 		try {
 			userTransaction.begin();
-			entityManager.persist(employee);
+			entityManager.persist(planta);
 			userTransaction.commit();
 		} catch (Exception e) {
 			
 			e.printStackTrace();
 		}
-		return employee;
+		return planta;
 	}
 
-	public List<Employee> findEmployees() {
-		TypedQuery<Employee> query = entityManager.createNamedQuery("findAllEmployees", Employee.class);
+	public List<Planta> findPlantas() {
+		TypedQuery<Planta> query = entityManager.createNamedQuery("findAllPlantas", Planta.class);
+		return query.getResultList();
+	}
+	
+	public List<Planta> findPlantaPorId() {
+		TypedQuery<Planta> query = entityManager.createNamedQuery("findAllPlantas", Planta.class);
 		return query.getResultList();
 	}
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>Listando Plantas cadastradas</h:head>
+<body>
+	<h:dataTable value="#{plantaManagedBean.plantaList}" var="plant"
+		border="1">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Id" />
+			</f:facet>
+			<h:outputText value="#{plant.id}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Nome" />
+			</f:facet>
+			<h:outputText value="#{plant.nome}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Nome Científico" />
+			</f:facet>
+			<h:outputText value="#{plant.nomeCientifico}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Luminosidade Padrão" />
+			</f:facet>
+			<h:outputText value="#{plant.luminosidadePadrao}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Umidade Padrão" />
+			</f:facet>
+			<h:outputText value="#{plant.umidadePadrao}" />
+		</h:column>
+		<!-- 
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Rotina Padrão" />
+			</f:facet>
+			<h:outputText value="#{plant.RotinaPadrao}" />
+		</h:column>
+		-->
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Tipo de Solo" />
+			</f:facet>
+			<h:outputText value="#{plant.tipoDeSolo}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="É adubável?" />
+			</f:facet>
+			<h:outputText value="#{plant.adubavel}" />
+		</h:column>
+	</h:dataTable>
+	<h:form>
+		<h:link outcome="plantanew.xhtml" value="Add new Planta" />
+	</h:form>
+</body>
+</html>

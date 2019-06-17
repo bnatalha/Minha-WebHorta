@@ -4,11 +4,20 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
+<h:head>
+	<title>Minha WebHorta: Página inicial</title>
+</h:head> 
 <body> 
 	<h:form>
-		<h:link outcome="employeenew.xhtml" value="Add new employee"/>
-		<h:link outcome="employeelist.xhtml" value="List employees"/>
+	<!-- 
+		<p><h:link outcome="login.xhtml" value="Login"/></p></p>
+	-->
+		<p><h:link outcome="plantanew.xhtml" value="Criar Planta"/></p>
+		<p><h:link outcome="plantalist.xhtml" action="#{plantaManagedBean.updatePlantaList()}" value="Listar Plantas"/></p>
+	<!--	
+		<p><h:link outcome="hortanew.xhtml" value="Criar Horta"/></p>
+		<p><h:link outcome="hortalist.xhtml" action="#{HortaManagedBean.updatePlantaList()}" value="Listar Plantas"/></p>
+	-->
 	</h:form>
 </body> 
 </html>
