@@ -14,33 +14,35 @@ import model.Planta;
 
 @Named
 @RequestScoped
-public class PlantaDAO {
-	@PersistenceContext(unitName = "PlantaPU")
-	private EntityManager entityManager;
+public class PlantaDAO implements DAO<Planta> {
+    @PersistenceContext(unitName = "PlantaPU")
+    private EntityManager entityManager;
 
-	@Resource
-	private UserTransaction userTransaction;
+    @Resource
+    private UserTransaction userTransaction;
 
-	public Planta addNew(Planta planta) {
-		try {
-			userTransaction.begin();
-			entityManager.persist(planta);
-			userTransaction.commit();
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		return planta;
+    @Override
+    public Planta get(long id) {
+	TypedQuery<Planta> query = entityManager.createNamedQuery("Planta.findId", Planta.class);
+	return query.getSingleResult();
+    }
+    
+    @Override
+    public List<Planta> getAll() {
+	TypedQuery<Planta> query = entityManager.createNamedQuery("Planta.findAll", Planta.class);
+	return query.getResultList();
+    }
+
+    @Override
+    public Planta save(Planta planta) {
+	try {
+	    userTransaction.begin();
+	    entityManager.persist(planta);
+	    userTransaction.commit();
+	} catch (Exception e) {
+
+	    e.printStackTrace();
 	}
-
-	public List<Planta> findPlantas() {
-		TypedQuery<Planta> query = entityManager.createNamedQuery("findAllPlantas", Planta.class);
-		return query.getResultList();
-	}
-	
-	public List<Planta> findPlantaPorId() {
-		TypedQuery<Planta> query = entityManager.createNamedQuery("findAllPlantas", Planta.class);
-		return query.getResultList();
-	}
-
+	return planta;
+    }
 }

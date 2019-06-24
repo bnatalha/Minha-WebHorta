@@ -7,36 +7,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQuery(name = "findAllPlantas", query = "SELECT p FROM Planta p")
-//@NamedQueries({
-//    @NamedQuery(name="Country.findAll",
-//                query="SELECT c FROM Country c"),
-//    @NamedQuery(name="Country.findByName",
-//                query="SELECT c FROM Country c WHERE c.name = :name"),
-//}) 
+@NamedQueries({
+    @NamedQuery(name = "Planta.findAll", query = "SELECT p FROM Planta p"),
+    @NamedQuery(name = "Planta.findId", query = "SELECT p FROM Planta p WHERE p.id = :id"), 
+})
 public class Planta {
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SEQ_PLANTA")
-    @SequenceGenerator(name="SEQ_PLANTA", sequenceName="seq_planta", allocationSize =1)
-    private Long id;	   
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PLANTA")
+    @SequenceGenerator(name = "SEQ_PLANTA", sequenceName = "seq_planta", allocationSize = 1)
+    private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String nome;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String nomeCientifico;
 
     private Float luminosidadePadrao;
 
     private Float umidadePadrao;
 
-    //private ArrayList<Rotina> rotinaPadrao;
+    // private ArrayList<Rotina> rotinaPadrao;
 
     private String tipoDeSolo;
 
@@ -45,42 +43,42 @@ public class Planta {
 //    @Temporal(TemporalType.DATE)
 //    private Date dob;
 
-    // Constructor ------------------------------------------------------------------------||
+    // Constructor
+    // ------------------------------------------------------------------------||
 
-
-    public Planta()
-    {
+    public Planta() {
 
     }
-    
-    // Getters/Setters ------------------------------------------------------------------------||
+
+    // Getters/Setters
+    // ------------------------------------------------------------------------||
 
     public Long getId() {
-        return id;
+	return id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+	this.id = id;
     }
 
     public String getNome() {
-        return nome;
+	return nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+	this.nome = nome;
     }
 
     public String getNomeCientifico() {
-        return nomeCientifico;
+	return nomeCientifico;
     }
 
     public void setNomeCientifico(String nomeCientifico) {
-        this.nomeCientifico = nomeCientifico;
+	this.nomeCientifico = nomeCientifico;
     }
 
     public Float getLuminosidadePadrao() {
-        return luminosidadePadrao;
+	return luminosidadePadrao;
     }
 
     public void setLuminosidadePadrao(Float luminosidadePadrao) {
@@ -111,8 +109,9 @@ public class Planta {
 	this.adubavel = adubavel;
     }
 
-    // HashCode  ------------------------------------------------------------------------||
-    
+    // HashCode
+    // ------------------------------------------------------------------------||
+
     @Override
     public int hashCode() {
 	final int prime = 31;
@@ -121,8 +120,9 @@ public class Planta {
 	return result;
     }
 
-    // Equals  ------------------------------------------------------------------------||
-    
+    // Equals
+    // ------------------------------------------------------------------------||
+
     @Override
     public boolean equals(Object obj) {
 	if (this == obj)
