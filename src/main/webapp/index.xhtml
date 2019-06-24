@@ -7,17 +7,16 @@
 <h:head>
 	<title>Minha WebHorta: Página inicial</title>
 </h:head> 
-<body> 
-	<h:form>
-	<!-- 
-		<p><h:link outcome="login.xhtml" value="Login"/></p></p>
-	-->
+<body>
+	<h2><h:outputText value="Plantas (DB)" /></h2>
+	<h:form id="indexplanta">
 		<p><h:link outcome="plantanew.xhtml" value="Criar Planta"/></p>
 		<p><h:link outcome="plantalist.xhtml" action="#{plantaManagedBean.updatePlantaList()}" value="Listar Plantas"/></p>
-	<!--	
+	</h:form>
+	<h2><h:outputText value="Hortas" /></h2>
+	<h:form id="indexhorta">
 		<p><h:link outcome="hortanew.xhtml" value="Criar Horta"/></p>
-		<p><h:link outcome="hortalist.xhtml" action="#{HortaManagedBean.updatePlantaList()}" value="Listar Plantas"/></p>
-	-->
+		<p><h:link outcome="hortalist.xhtml" action="#{hortaManagedBean.updateHortaList()}" value="Listar Hortas"/></p>
 	</h:form>
 </body> 
 </html>

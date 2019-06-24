@@ -8,13 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQuery(name = "findAllHortas", query = "SELECT h FROM Horta h")
+@NamedQueries({
+    @NamedQuery(name = "Horta.findAll", query = "SELECT h FROM Horta h"),
+    @NamedQuery(name = "Horta.findId", query = "SELECT h FROM Horta h WHERE h.id = :id"), 
+})
 public class Horta {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SEQ_HORTA")
@@ -57,10 +61,13 @@ public class Horta {
     public void setPlantasDaHorta(ArrayList<Planta> plantasDaHorta) {
         this.plantasDaHorta = plantasDaHorta;
     }
+    
+    // Especific modifiers --------------------------------------------------------------||
+    public void addPlanta(Planta planta) {
+	this.plantasDaHorta.add(planta);
+    }
 
     // HashCode  ------------------------------------------------------------------------||
-    
-
     @Override
     public int hashCode() {
 	final int prime = 31;
@@ -69,8 +76,7 @@ public class Horta {
 	return result;
     }
 
-    // Equals  ------------------------------------------------------------------------||
-    
+    // Equals  ------------------------------------------------------------------------||    
     @Override
     public boolean equals(Object obj) {
 	if (this == obj)

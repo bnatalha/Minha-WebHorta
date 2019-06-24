@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>Listando Hortas cadastradas</h:head>
+<body>
+<h:form>
+	<h:dataTable value="#{hortaManagedBean.hortaList}" var="hort"
+		border="1">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Id" />
+			</f:facet>
+			<h:outputText value="#{hort.id}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Nome" />
+			</f:facet>
+			<h:outputText value="#{hort.nome}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Plantas" />
+			</f:facet>
+			<h:outputText value="#{hort.plantasDaHorta}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Operações" />
+			</f:facet>
+			<h:commandButton value="Editar Horta"
+				action="#{hortaManagedBean.editHorta}">
+				<f:param name="editButton" value="#{hort.id}" />
+			</h:commandButton>
+		</h:column>
+	</h:dataTable>
+</h:form>
+	<h:form>
+		<h:link outcome="hortanew.xhtml" value="Add new Horta" />
+	</h:form>
+</body>
+</html>

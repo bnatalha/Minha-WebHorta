@@ -14,28 +14,55 @@ import model.Horta;
 
 @Named
 @RequestScoped
-public class HortaDAO {
-	@PersistenceContext(unitName = "HortaPU")
-	private EntityManager entityManager;
+public class HortaDAO implements DAO<Horta> {
+    @PersistenceContext(unitName = "HortaPU")
+    private EntityManager em;
 
-	@Resource
-	private UserTransaction userTransaction;
+    @Resource
+    private UserTransaction userTransaction;
 
-	public Horta addNew(Horta horta) {
-		try {
-			userTransaction.begin();
-			entityManager.persist(horta);
-			userTransaction.commit();
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		return horta;
+    @Override
+    public Horta get(long id) {
+	System.out.println(id);
+	TypedQuery<Horta> query = em.createNamedQuery("Horta.findId", Horta.class);
+	query.setParameter("id", id);
+	return query.getSingleResult();
+    }
+    
+    @Override
+    public List<Horta> getAll() {
+	TypedQuery<Horta> query = em.createNamedQuery("Horta.findAll", Horta.class);
+	return query.getResultList();
+    }
+
+    @Override
+    public Horta save(Horta horta) {
+	try {
+	    userTransaction.begin();
+	    em.persist(horta);
+	    userTransaction.commit();
+	} catch (Exception e) {
+
+	    e.printStackTrace();
 	}
-
-	public List<Horta> findHortas() {
-		TypedQuery<Horta> query = entityManager.createNamedQuery("findAllHortas", Horta.class);
-		return query.getResultList();
-	}
-
+	return horta;
+    }
+    
+//    @Override
+//    public Horta update(Horta horta) {
+//	try {
+//	    userTransaction.begin();
+//	    Horta hortaToModify = em.find(Horta.class, horta.getId());
+//	    
+//	    hortaToModify.setNome(horta.getNome());
+//	    hortaToModify.setPlantasDaHorta(horta.getPlantasDaHorta());
+//	    em.persist(horta);
+//	    
+//	    userTransaction.commit();
+//	} catch (Exception e) {
+//
+//	    e.printStackTrace();
+//	}
+//	return horta;
+//    }
 }
