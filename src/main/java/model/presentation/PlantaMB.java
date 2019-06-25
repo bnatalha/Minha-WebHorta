@@ -1,19 +1,20 @@
 package model.presentation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import model.Planta;
 import model.data.PlantaDAO;
+import java.io.Serializable;
 
 @Named(value = "plantaManagedBean")
-@RequestScoped
-public class PlantaMB {
+@SessionScoped
+public class PlantaMB implements Serializable {
     @Inject
     PlantaDAO dao;
 
@@ -51,16 +52,13 @@ public class PlantaMB {
     public String addNewPlanta() {
 	dao.save(planta);
 	plantaList = dao.getAll();
-	return "plantalist";
+	
+	return "/plantalist.xhtml?faces-redirect=true";
     }
-
-//    public String getPlantaById(Long id) {
-//	planta = dao.get(id);
-//	return "plantalist";
-//    }
 
     public String updatePlantaList() {
 	plantaList = dao.getAll();
-	return "plantalist";
+	
+	return "/plantalist.xhtml?faces-redirect=true";
     }
 }

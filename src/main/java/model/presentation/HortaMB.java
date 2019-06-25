@@ -1,21 +1,22 @@
 package model.presentation;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import model.Horta;
+import model.Planta;
 import model.data.HortaDAO;
+import java.io.Serializable;
 
 @Named(value = "hortaManagedBean")
-@RequestScoped
-public class HortaMB {
+@SessionScoped
+public class HortaMB implements Serializable {
     @Inject
     HortaDAO dao;
 
@@ -50,40 +51,44 @@ public class HortaMB {
 	this.horta = horta;
     }
 
-    // Dao communication
+    // View controller communication
     // ------------------------------------------------------------------------||
     public String addNewHorta() {
 	dao.save(horta);
 	hortaList = dao.getAll();
-	return "hortalist";
+	return "/hortalist.xhtml?faces-redirect=true";
+    }
+    
+    public String addNewPlanta(Planta planta) {
+	// call dao and update horta with a new array with planta
+	this.horta = dao.get(this.horta.getId());
+	this.horta.addPlanta(planta);
+	dao.update(this.horta);
+	
+	
+	return "/hortaedit.xhtml?faces-redirect=true";
     }
 
-    public String editHorta(){
-	FacesContext fc = FacesContext.getCurrentInstance();
-	Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+    public String editHorta(Horta horta){
+//	FacesContext fc = FacesContext.getCurrentInstance();
+//	Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+//	
+//	Horta editThisHorta = 
+//		dao.get(Long.parseLong(params.get("editButton")));
+//	
+//	sessionMap.put("editHortaObj", editThisHorta);
+	this.horta = horta;
 	
-	Horta editThisHorta = 
-		dao.get(Long.parseLong(params.get("editButton")));
-	
-	sessionMap.put("editHortaObj", editThisHorta);
-	
-        return "/horta_editplantas.xhtml?faces-redirect=true";
+        return "/hortaedit.xhtml?faces-redirect=true";
     }
-
-//    public String updateHorta() {
-//	dao.update()
-//        Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-//        sessionMapObj.put("selectedHortaMBObj", selectedHortaMB );	
-//        return "horta_editplantas";
-//    }
-
-//    public String getHortaById(Long id) {
-//	horta = dao.get(id);
-//	return "hortalist";
-//    }
+    
+    public String deletePlanta(Horta horta, Planta planta) {
+	// call dao and update horta with a new array without planta
+	return "/hortalist.xhtml?faces-redirect=true";
+    }
 
     public String updateHortaList() {
 	hortaList = dao.getAll();
-	return "hortalist";
+	return "/hortalist.xhtml?faces-redirect=true";
     }
 }

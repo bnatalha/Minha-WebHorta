@@ -4,42 +4,45 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head>Listando Hortas cadastradas</h:head>
+<h:head>
+	<title>Listando Hortas cadastradas</title>
+</h:head>
 <body>
-<h:form>
-	<h:dataTable value="#{hortaManagedBean.hortaList}" var="hort"
-		border="1">
-		<h:column>
-			<f:facet name="header">
-				<h:outputText value="Id" />
-			</f:facet>
-			<h:outputText value="#{hort.id}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputText value="Nome" />
-			</f:facet>
-			<h:outputText value="#{hort.nome}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputText value="Plantas" />
-			</f:facet>
-			<h:outputText value="#{hort.plantasDaHorta}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputText value="Operações" />
-			</f:facet>
-			<h:commandButton value="Editar Horta"
-				action="#{hortaManagedBean.editHorta}">
-				<f:param name="editButton" value="#{hort.id}" />
-			</h:commandButton>
-		</h:column>
-	</h:dataTable>
-</h:form>
-	<h:form>
-		<h:link outcome="hortanew.xhtml" value="Add new Horta" />
-	</h:form>
+	<center>
+		<h:form>
+			<h:dataTable value="#{hortaManagedBean.hortaList}" var="hort"
+				border="1">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{hort.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{hort.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Plantas" />
+					</f:facet>
+					<h:outputText value="#{hort.plantasDaHorta}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Operações" />
+					</f:facet>
+					<h:commandButton value="Editar Horta"
+						action="#{hortaManagedBean.editHorta(hort)}">
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		<h:form>
+			<h:link outcome="hortanew.xhtml" value="Adicionar nova Horta" />
+		</h:form>
+	</center>
 </body>
 </html>

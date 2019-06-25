@@ -27,7 +27,7 @@ public class Planta {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nomeCientifico;
 
     private Float luminosidadePadrao;
@@ -138,6 +138,11 @@ public class Planta {
 	} else if (!id.equals(other.id))
 	    return false;
 	return true;
+    }
+    
+    @Override
+    public String toString() {
+        return "Horta[id=" + id + "]";
     }
 
 }

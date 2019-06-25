@@ -93,5 +93,10 @@ public class Horta {
 	    return false;
 	return true;
     }
+    
+    @Override
+    public String toString() {
+        return "Horta[id=" + id + "]";
+    }
 
 }

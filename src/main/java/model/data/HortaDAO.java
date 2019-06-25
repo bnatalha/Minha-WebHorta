@@ -23,7 +23,6 @@ public class HortaDAO implements DAO<Horta> {
 
     @Override
     public Horta get(long id) {
-	System.out.println(id);
 	TypedQuery<Horta> query = em.createNamedQuery("Horta.findId", Horta.class);
 	query.setParameter("id", id);
 	return query.getSingleResult();
@@ -49,20 +48,20 @@ public class HortaDAO implements DAO<Horta> {
     }
     
 //    @Override
-//    public Horta update(Horta horta) {
-//	try {
-//	    userTransaction.begin();
+    public Horta update(Horta horta) {
+	try {
+	    userTransaction.begin();
 //	    Horta hortaToModify = em.find(Horta.class, horta.getId());
-//	    
+	    
 //	    hortaToModify.setNome(horta.getNome());
 //	    hortaToModify.setPlantasDaHorta(horta.getPlantasDaHorta());
-//	    em.persist(horta);
-//	    
-//	    userTransaction.commit();
-//	} catch (Exception e) {
-//
-//	    e.printStackTrace();
-//	}
-//	return horta;
-//    }
+	    em.persist(horta);
+	    
+	    userTransaction.commit();
+	} catch (Exception e) {
+
+	    e.printStackTrace();
+	}
+	return horta;
+    }
 }

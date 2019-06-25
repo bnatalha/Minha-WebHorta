@@ -8,6 +8,7 @@
 	<title>Minha WebHorta: Página inicial</title>
 </h:head> 
 <body>
+<center>
 	<h2><h:outputText value="Plantas (DB)" /></h2>
 	<h:form id="indexplanta">
 		<p><h:link outcome="plantanew.xhtml" value="Criar Planta"/></p>
@@ -18,5 +19,6 @@
 		<p><h:link outcome="hortanew.xhtml" value="Criar Horta"/></p>
 		<p><h:link outcome="hortalist.xhtml" action="#{hortaManagedBean.updateHortaList()}" value="Listar Hortas"/></p>
 	</h:form>
+</center>
 </body> 
 </html>

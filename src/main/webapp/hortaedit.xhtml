@@ -5,12 +5,17 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-	<title>Listando Plantas cadastradas</title>
+	<title>Editar plantas da Horta</title>
 </h:head>
 <body>
 	<center>
-		<h:dataTable value="#{plantaManagedBean.plantaList}" var="plant"
-			border="1">
+		<h2>Horta:</h2>
+
+		<h:outputText value="#{hortaManagedBean.horta.nome}" />
+
+		<h2>Plantas da Horta</h2>
+		<h:dataTable value="#{hortaManagedBean.horta.plantasDaHorta}"
+			var="plant" border="1">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Id" />
@@ -41,14 +46,7 @@
 				</f:facet>
 				<h:outputText value="#{plant.umidadePadrao}" />
 			</h:column>
-			<!-- 
-		<h:column>
-			<f:facet name="header">
-				<h:outputText value="Rotina Padrão" />
-			</f:facet>
-			<h:outputText value="#{plant.RotinaPadrao}" />
-		</h:column>
-		-->
+			<!-- Rotina	-->
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Tipo de Solo" />
@@ -61,9 +59,27 @@
 				</f:facet>
 				<h:outputText value="#{plant.adubavel}" />
 			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Operações" />
+				</f:facet>
+				<h:commandButton value="Remover Planta"
+					action="#{hortaManagedBean.deletePlanta(plant)}">
+				</h:commandButton>
+			</h:column>
 		</h:dataTable>
+
+		<h2>Adicionar Planta</h2>
 		<h:form>
-			<h:link outcome="plantanew.xhtml" value="Add new Planta" />
+			Nome da Planta: <h:selectOneMenu value="#{plantaManagedBean.planta}">
+				<f:selectItems value="#{plantaManagedBean.plantaList}"
+					var="planta_add" itemLabel="#{planta_add.nomeCientifico}"
+					itemValue="#{planta_add}" />
+			</h:selectOneMenu>
+			
+			<h:commandButton value="Adicionar"
+				action="#{hortaManagedBean.addNewPlanta(plantaManagedBean.planta)}">
+			</h:commandButton>
 		</h:form>
 	</center>
 </body>
