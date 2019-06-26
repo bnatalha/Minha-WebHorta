@@ -31,7 +31,8 @@ public class Horta {
     @Column(nullable=false)
     private String nome;
 
-    @ManyToOne
+//    @ManyToOne
+    @OneToMany(mappedBy = "nestaHorta")
     private ArrayList<Plantada> plantadasDaHorta;
     
     // Constructor ------------------------------------------------------------------------||

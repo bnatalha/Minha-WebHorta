@@ -25,11 +25,13 @@ public class Plantada {
     @SequenceGenerator(name="SEQ_PLANTADA", sequenceName="seq_plantada", allocationSize =1)
     private Long id;	
     
-    @OneToMany(mappedBy = "plantacoes")
+//    @OneToMany(mappedBy = "plantadas")
+    @ManyToOne
     private Planta tipoDaPlanta;
     
-    @OneToMany(mappedBy = "plantadasDaHorta")
-    private Horta horta;
+//    @OneToMany(mappedBy = "plantadasDaHorta")
+    @ManyToOne
+    private Horta nestaHorta;
     
     @Column(nullable = false)
     private Date dataDePlantio = new Date();
@@ -68,11 +70,11 @@ public class Plantada {
     }
 
     public Horta getHorta() {
-        return horta;
+        return nestaHorta;
     }
 
     public void setHorta(Horta horta) {
-        this.horta = horta;
+        this.nestaHorta = horta;
     }
     
     public Date getDataDePlantio() {

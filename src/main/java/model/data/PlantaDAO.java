@@ -15,7 +15,7 @@ import model.Planta;
 @Named
 @RequestScoped
 public class PlantaDAO implements DAO<Planta> {
-    @PersistenceContext(unitName = "PlantaPU")
+    @PersistenceContext(unitName = "webhortaPU")
     private EntityManager entityManager;
 
     @Resource

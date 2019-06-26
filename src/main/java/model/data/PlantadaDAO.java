@@ -10,11 +10,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.UserTransaction;
 
-import model.Horta;
+import model.Plantada;
 
 @Named
 @RequestScoped
-public class HortaDAO implements DAO<Horta> {
+public class PlantadaDAO implements DAO<Plantada> {
     @PersistenceContext(unitName = "webhortaPU")
     private EntityManager em;
 
@@ -22,46 +22,46 @@ public class HortaDAO implements DAO<Horta> {
     private UserTransaction userTransaction;
 
     @Override
-    public Horta get(long id) {
-	TypedQuery<Horta> query = em.createNamedQuery("Horta.findId", Horta.class);
+    public Plantada get(long id) {
+	TypedQuery<Plantada> query = em.createNamedQuery("Plantada.findId", Plantada.class);
 	query.setParameter("id", id);
 	return query.getSingleResult();
     }
     
     @Override
-    public List<Horta> getAll() {
-	TypedQuery<Horta> query = em.createNamedQuery("Horta.findAll", Horta.class);
+    public List<Plantada> getAll() {
+	TypedQuery<Plantada> query = em.createNamedQuery("Plantada.findAll", Plantada.class);
 	return query.getResultList();
     }
 
     @Override
-    public Horta save(Horta horta) {
+    public Plantada save(Plantada plantada) {
 	try {
 	    userTransaction.begin();
-	    em.persist(horta);
+	    em.persist(plantada);
 	    userTransaction.commit();
 	} catch (Exception e) {
 
 	    e.printStackTrace();
 	}
-	return horta;
+	return plantada;
     }
     
 //    @Override
-    public Horta update(Horta horta) {
+    public Plantada update(Plantada plantada) {
 	try {
 	    userTransaction.begin();
-//	    Horta hortaToModify = em.find(Horta.class, horta.getId());
+//	    Plantada hortaToModify = em.find(Plantada.class, plantada.getId());
 	    
-//	    hortaToModify.setNome(horta.getNome());
-//	    hortaToModify.setPlantasDaHorta(horta.getPlantasDaHorta());
-	    em.persist(horta);
+//	    hortaToModify.setNome(plantada.getNome());
+//	    hortaToModify.setPlantasDaPlantada(plantada.getPlantasDaPlantada());
+	    em.persist(plantada);
 	    
 	    userTransaction.commit();
 	} catch (Exception e) {
 
 	    e.printStackTrace();
 	}
-	return horta;
+	return plantada;
     }
 }

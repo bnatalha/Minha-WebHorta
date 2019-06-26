@@ -1,7 +1,7 @@
 package model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,8 +43,9 @@ public class Planta {
 
     private Boolean adubavel;
     
-    @ManyToOne
-    private List<Plantada> plantacoes;
+//    @ManyToOne
+    @OneToMany(mappedBy = "tipoDaPlanta")
+    private ArrayList<Plantada> plantadas;
 
 //    @Temporal(TemporalType.DATE)
 //    private Date dob;
