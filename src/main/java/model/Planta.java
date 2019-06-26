@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class Planta {
     private Boolean adubavel;
     
 //    @ManyToOne
-    @OneToMany(mappedBy = "tipoDaPlanta")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "tipoDaPlanta")
     private List<Plantada> plantadas;
 
 //    @Temporal(TemporalType.DATE)
