@@ -1,7 +1,7 @@
 package model;
 
 import java.util.Date;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,7 +37,7 @@ public class Planta {
 
     private Float umidadePadrao;
 
-    // private ArrayList<Rotina> rotinaPadrao;
+    // private List<Rotina> rotinaPadrao;
 
     private String tipoDeSolo;
 
@@ -45,7 +45,7 @@ public class Planta {
     
 //    @ManyToOne
     @OneToMany(mappedBy = "tipoDaPlanta")
-    private ArrayList<Plantada> plantadas;
+    private List<Plantada> plantadas;
 
 //    @Temporal(TemporalType.DATE)
 //    private Date dob;

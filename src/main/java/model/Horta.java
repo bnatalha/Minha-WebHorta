@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -33,7 +33,7 @@ public class Horta {
 
 //    @ManyToOne
     @OneToMany(mappedBy = "nestaHorta")
-    private ArrayList<Plantada> plantadasDaHorta;
+    private List<Plantada> plantadasDaHorta;
     
     // Constructor ------------------------------------------------------------------------||
     public Horta()
@@ -59,12 +59,12 @@ public class Horta {
         this.nome = nome;
     }
 
-    public ArrayList<Plantada> getPlantadasDaHorta() {
+    public List<Plantada> getPlantadasDaHorta() {
         return plantadasDaHorta;
     }
 
-    public void setPlantasDaHorta(ArrayList<Plantada> plantasDaHorta) {
-        this.plantadasDaHorta = plantasDaHorta;
+    public void setPlantasDaHorta(List<Plantada> plantadasDaHorta) {
+        this.plantadasDaHorta = plantadasDaHorta;
     }
     
     // Especific modifiers --------------------------------------------------------------||
