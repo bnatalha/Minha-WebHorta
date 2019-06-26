@@ -60,11 +60,10 @@ public class HortaMB implements Serializable {
     }
     
     public String addNewPlanta(Planta planta) {
-	// call dao and update horta with a new array with planta
 	this.horta = dao.get(this.horta.getId());
 	this.horta.addPlanta(planta);
+	System.out.println(this.horta);
 	dao.update(this.horta);
-	
 	
 	return "/hortaedit.xhtml?faces-redirect=true";
     }

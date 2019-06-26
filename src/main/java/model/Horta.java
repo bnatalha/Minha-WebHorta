@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -93,10 +95,15 @@ public class Horta {
 	    return false;
 	return true;
     }
-    
+
     @Override
     public String toString() {
-        return "Horta[id=" + id + "]";
+	String printString = new String("Horta [id=" + id + ", nome=" + nome + ", plantasDaHorta= ");
+	printString += "[ ";
+	for (Planta p: this.plantasDaHorta) {
+	    printString += "(" + p.toString() + "), ";
+	}
+	printString += "]]";
+	return printString;
     }
-
 }
