@@ -71,14 +71,14 @@
 
 		<h2>Adicionar Planta</h2>
 		<h:form>
-			Nome da Planta: <h:selectOneMenu value="#{plantaManagedBean.planta}">
+			Nome da Planta: <h:selectOneMenu value="#{plantaManagedBean.plantaId}">
 				<f:selectItems value="#{plantaManagedBean.plantaList}"
 					var="planta_add" itemLabel="#{planta_add.nomeCientifico}"
-					itemValue="#{planta_add}" />
+					itemValue="#{planta_add.id}" />
 			</h:selectOneMenu>
 			
 			<h:commandButton value="Adicionar"
-				action="#{hortaManagedBean.addNewPlanta(plantaManagedBean.planta)}">
+				action="#{hortaManagedBean.addNewPlanta(plantaManagedBean.plantaId)}">
 			</h:commandButton>
 		</h:form>
 	</center>

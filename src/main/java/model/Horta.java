@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -30,7 +31,8 @@ public class Horta {
     @Column(nullable=false)
     private String nome;
 
-    private ArrayList<Planta> plantasDaHorta;
+    @ManyToOne
+    private ArrayList<Plantada> plantadasDaHorta;
     
     // Constructor ------------------------------------------------------------------------||
     public Horta()
@@ -56,17 +58,17 @@ public class Horta {
         this.nome = nome;
     }
 
-    public ArrayList<Planta> getPlantasDaHorta() {
-        return plantasDaHorta;
+    public ArrayList<Plantada> getPlantadasDaHorta() {
+        return plantadasDaHorta;
     }
 
-    public void setPlantasDaHorta(ArrayList<Planta> plantasDaHorta) {
-        this.plantasDaHorta = plantasDaHorta;
+    public void setPlantasDaHorta(ArrayList<Plantada> plantasDaHorta) {
+        this.plantadasDaHorta = plantasDaHorta;
     }
     
     // Especific modifiers --------------------------------------------------------------||
-    public void addPlanta(Planta planta) {
-	this.plantasDaHorta.add(planta);
+    public void addPlantada(Plantada plantada) {
+	this.plantadasDaHorta.add(plantada);
     }
 
     // HashCode  ------------------------------------------------------------------------||
@@ -98,9 +100,9 @@ public class Horta {
 
     @Override
     public String toString() {
-	String printString = new String("Horta [id=" + id + ", nome=" + nome + ", plantasDaHorta= ");
+	String printString = new String("Horta [id=" + id + ", nome=" + nome + ", plantadasDaHorta= ");
 	printString += "[ ";
-	for (Planta p: this.plantasDaHorta) {
+	for (Plantada p: this.plantadasDaHorta) {
 	    printString += "(" + p.toString() + "), ";
 	}
 	printString += "]]";

@@ -1,14 +1,17 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,6 +42,9 @@ public class Planta {
     private String tipoDeSolo;
 
     private Boolean adubavel;
+    
+    @ManyToOne
+    private List<Plantada> plantacoes;
 
 //    @Temporal(TemporalType.DATE)
 //    private Date dob;

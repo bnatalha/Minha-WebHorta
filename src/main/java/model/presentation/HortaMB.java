@@ -11,6 +11,7 @@ import javax.inject.Named;
 
 import model.Horta;
 import model.Planta;
+import model.Plantada;
 import model.data.HortaDAO;
 import java.io.Serializable;
 
@@ -59,11 +60,12 @@ public class HortaMB implements Serializable {
 	return "/hortalist.xhtml?faces-redirect=true";
     }
     
-    public String addNewPlanta(Planta planta) {
-	this.horta = dao.get(this.horta.getId());
-	this.horta.addPlanta(planta);
-	System.out.println(this.horta);
-	dao.update(this.horta);
+    public String addNewPlanta(Long plantaId) { // don't need this parameter
+	horta = dao.get(horta.getId()); // update
+	Plantada plantada = new Plantada(plantaId);
+	horta.addPlantada(plantada);
+	System.out.println(horta);
+	dao.update(horta);
 	
 	return "/hortaedit.xhtml?faces-redirect=true";
     }
@@ -81,7 +83,7 @@ public class HortaMB implements Serializable {
         return "/hortaedit.xhtml?faces-redirect=true";
     }
     
-    public String deletePlanta(Horta horta, Planta planta) {
+    public String deletePlanta(Horta horta, Plantada plantada) {
 	// call dao and update horta with a new array without planta
 	return "/hortalist.xhtml?faces-redirect=true";
     }

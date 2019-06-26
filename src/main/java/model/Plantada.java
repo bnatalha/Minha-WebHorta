@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -22,13 +25,14 @@ public class Plantada {
     @SequenceGenerator(name="SEQ_PLANTADA", sequenceName="seq_plantada", allocationSize =1)
     private Long id;	
     
-    @JoinColumn(nullable = false)
-    @ManyToOne
+    @OneToMany(mappedBy = "plantacoes")
     private Planta tipoDaPlanta;
     
-    @JoinColumn(nullable = false)
-    @ManyToOne
+    @OneToMany(mappedBy = "plantadasDaHorta")
     private Horta horta;
+    
+    @Column(nullable = false)
+    private Date dataDePlantio = new Date();
 
     /**
      * @param id
@@ -36,6 +40,7 @@ public class Plantada {
     public Plantada(Long id) {
 	super();
 	this.id = id;
+	
     }
 
     /**
@@ -70,6 +75,14 @@ public class Plantada {
         this.horta = horta;
     }
     
+    public Date getDataDePlantio() {
+        return dataDePlantio;
+    }
+
+    public void setDataDePlantio(Date dataDePlantio) {
+        this.dataDePlantio = dataDePlantio;
+    }
+
     // HashCode  ------------------------------------------------------------------------||
     @Override
     public int hashCode() {
@@ -88,7 +101,7 @@ public class Plantada {
 	    return false;
 	if (getClass() != obj.getClass())
 	    return false;
-	Horta other = (Horta) obj;
+	Plantada other = (Plantada) obj;
 	if (id == null) {
 	    if (other.id != null)
 		return false;

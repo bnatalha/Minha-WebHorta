@@ -20,6 +20,7 @@ public class PlantaMB implements Serializable {
 
     private List<Planta> plantaList;
     private Planta planta;
+    private Long plantaId;
     
     // Constructor
     // ------------------------------------------------------------------------||
@@ -27,6 +28,7 @@ public class PlantaMB implements Serializable {
     public void init() {
 	plantaList = dao.getAll();
 	planta = new Planta();
+//	plantaId = null;
     }
 
     // Get/Set
@@ -46,7 +48,15 @@ public class PlantaMB implements Serializable {
     public void setPlanta(Planta planta) {
 	this.planta = planta;
     }
-    
+
+    public Long getPlantaId() {
+        return plantaId;
+    }
+
+    public void setPlantaId(Long plantaId) {
+        this.plantaId = plantaId;
+    }
+
     // Dao communication
     // ------------------------------------------------------------------------||
     public String addNewPlanta() {
